@@ -1,0 +1,20 @@
+<div class="flex">
+  <h2 class="text-4xl font-extrabold dark:text-white"><%= @group.name %></h2>
+
+  <% if policy(@group).update? %>
+    <div class="ml-2 flex items-center">
+      <%= render(DialogComponent.new(title: "Create a new group", icon: 'fa-gear text-2xl', data: { action: 'click->modal#open' })) do %>
+        <%= render 'groups/form' %>
+      <% end%>
+    </div>
+  <% end %>
+</div>
+
+<div class="mt-10">
+  <%= render 'groups/posts/form', post: Post.new(group: @group), group: @group if policy(@group).create_post? %>
+</div>
+
+<h2 class="mt-20 mb-10 text-4xl font-extrabold dark:text-white">All Posts</h2>
+
+
+<%= render partial: "posts/post", collection: @posts, locals: { group: @group } %>

@@ -1,0 +1,12 @@
+<div class="mb-10">
+  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= @post.title %></h5>
+  <p><%= @post.body %></p>
+</div>
+
+<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Comments</h5>
+
+<%= render partial: 'comments/form', locals: { comment: Comment.new, commentable: @post } %>
+
+<%= turbo_frame_tag dom_id_for_records(@post, prefix: 'comments') do %>
+  <%= render partial: "comments/comment", collection: @comments %>
+<% end %>

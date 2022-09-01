@@ -1,0 +1,2 @@
+<% comment = Comment.new %>
+<%= turbo_stream.prepend(dom_id_for_records(@commentable, prefix:'comments'), partial: "comments/comment", locals: { comment: @comment, commentable: @commentable }) %>

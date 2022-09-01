@@ -1,0 +1,7 @@
+<%= turbo_frame_tag post do %>
+  <div id="<%= dom_id(post) %>" data-controller="form">
+    <%= render(PostComponent.new(post: post, edit: policy(post).update?, delete: policy(post).destroy?)) %>
+    
+    <%= render partial: "groups/posts/form", locals: { post: post, data: { form_target: "edit" }, class: "hidden" } %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<% model = [local_assigns[:group], post].compact %>
+<%= form_with model: model, 
+              id: dom_id_for_records(*model), 
+              data: local_assigns[:data], 
+              class: ["my-4"] + Array.wrap(local_assigns[:class]) do |form| %>
+  <div class="field">
+    <%= form.text_field :title, class: "block border border-grey-light w-full p-3 rounded mb-4", placeholder: 'What is the title of this post?' %>
+  </div>
+
+  <div class="field">
+    <%= form.rich_text_area :body, class: "block border border-grey-light w-full p-3 rounded mb-4 h-[32rem]", placeholder: 'Write your post...'  %>
+  </div>
+  
+  <%= form.submit 'Post', class: "text-lg font-medium text-white cursor-pointer bg-blue-700 hover:bg-blue-800 rounded-lg px-5 text-center py-2.5 mr-2 mb-2 focus:outline-none" %>
+
+  <% if post.errors.any? %>
+    <div id="error_explanation mt-10">
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>

@@ -1,0 +1,11 @@
+<%= turbo_frame_tag comment do %>
+  <div class="<%= "pl-8" if comment.commentable.class == Comment %> border-left" id="<%= dom_id(comment) %>_with_comments" data-controller="form">
+    <%= render(CommentComponent.new(comment: comment, edit: policy(comment).update?, delete: policy(comment).destroy?)) %>
+    
+    <%= render partial: "comments/form", locals: { comment: comment, data: { form_target: "edit" }, class: "hidden" } %>
+    <div id="<%= dom_id(comment) %>_comments">
+      <%= render partial: "comments/form", locals: { commentable: comment, comment: Comment.new, data: { form_target: "new" }, class: "hidden" } %>
+      <%= render partial: "comments/comment", collection: comment.comments, as: :comment %>
+    </div>
+  </div>
+<% end %>

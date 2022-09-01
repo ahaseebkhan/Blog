@@ -1,0 +1,18 @@
+<%= form_with model: @group, id: 'group_form' do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "block border border-grey-light w-full p-3 rounded mb-4"  %>
+  </div>
+  
+  <%= form.submit "Save", class: "text-lg font-medium text-white cursor-pointer bg-blue-700 hover:bg-blue-800 rounded-lg px-5 text-center py-2.5 mr-2 mb-2 focus:outline-none" %>
+
+  <% if @group.errors.any? %>
+    <div id="error_explanation mt-10">
+      <ul>
+        <% @group.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
