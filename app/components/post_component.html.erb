@@ -1,0 +1,14 @@
+<div class="p-6 items-center mb-10 bg-gray-200 rounded-xl">
+  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= @post.title %></h5>
+  <p><%= @post.body %></p>
+  
+  <div class="grid md:grid-cols-8 sm:grid-cols-1 mt-10 text-sm text-slate-500">
+    <span class="col-span-2">
+      Last Comment <%= time_ago_in_words(@post.last_activity) rescue time_ago_in_words(@post.created_at) %> ago
+    </span>
+    <span><%= link_to "Edit", "#", data: { action: "click->form#edit" } if edit %></span>
+    <span><%= link_to 'Delete', '#' if delete %></span>
+  </div>
+  
+  <%= link_to 'View post ->', post_path(@post), class: 'block md:col-span-4 sm:col-span-2 mt-3', data: { turbo: false } %>
+</div>
