@@ -1,24 +1,27 @@
-# README
+# Simplero Test Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Description
 
-Things you may want to cover:
+This is a simple community platform that allows people to create & join “Groups”.
 
-* Ruby version
 
-* System dependencies
+## Requirements
 
-* Configuration
+This project currently works with:
 
-* Database creation
+* Ruby 3.1.1
+* PostgreSQL
+* Redis
 
-* Database initialization
+## Installation
 
-* How to run the test suite
+* Run `bundle install`
+* Run `rails db:create db:migrate db:seed`
+* To start the project run `./bin/dev`
 
-* Services (job queues, cache servers, search engines, etc.)
+## What does this project do?
 
-* Deployment instructions
-
-* ...
+* Users can login/signup
+* Users can join groups and view them
+* Only members or creators of a group can post in them
+* Anyone can comment on a post or reply to comments
