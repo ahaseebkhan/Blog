@@ -16,6 +16,7 @@
       <%= render "layouts/flash" %>
     </div>
     <main class="container mx-auto px-5 mt-10">
+      <%= render 'layouts/navbar' if current_user %>
       <%= yield %>
     </main>
   </body>

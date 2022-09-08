@@ -1,11 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = [ "new", "edit" ]
+  static targets = [ "new", "edit", "preview" ]
 
   edit(event) {
     event.preventDefault()
     this.editTarget.classList.toggle("hidden")
+    this.previewTarget.classList.toggle("hidden")
   }
 
   new(event) {

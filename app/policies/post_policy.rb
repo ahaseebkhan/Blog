@@ -10,10 +10,6 @@ class PostPolicy < ApplicationPolicy
     GroupUser.is_member?(user.id, post.group_id)
   end
 
-  def update?
-    post.group.creator == user || post.creator == user
-  end
-
   def destroy?
     post.group.creator == user || post.creator == user
   end

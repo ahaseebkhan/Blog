@@ -1,6 +1,6 @@
 class Groups::PostsController < ApplicationController
   before_action :set_group
-  before_action :set_posts, only: %i(index)
+  before_action :set_posts, :set_members, only: %i(index)
 
   def index; end
 
@@ -22,6 +22,10 @@ class Groups::PostsController < ApplicationController
 
   def set_posts
     @posts = @group.posts.left_outer_joins(:comments).select("posts.*, MIN(comments.updated_at) as last_activity").group('posts.id').order(created_at: :desc)
+  end
+
+  def set_members
+    @members = @group.users
   end
 
   def post_params

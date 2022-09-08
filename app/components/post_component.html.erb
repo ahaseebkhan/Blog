@@ -3,11 +3,12 @@
   <p><%= @post.body %></p>
   
   <div class="grid md:grid-cols-8 sm:grid-cols-1 mt-10 text-sm text-slate-500">
-    <span class="col-span-2">
-      Last Comment <%= time_ago_in_words(@post.last_activity) rescue time_ago_in_words(@post.created_at) %> ago
+    <span class="col-span-3">
+      Last Comment <%= time_ago_in_words(@post.last_activity) rescue time_ago_in_words(@post.created_at) %> ago,
+      Created by <%= @post.creator_id == user_id ? 'You' : @post&.creator.display_name %>
     </span>
     <span><%= link_to "Edit", "#", data: { action: "click->form#edit" } if edit %></span>
-    <span><%= link_to 'Delete', '#' if delete %></span>
+    <span><%= link_to 'Delete', post_path(@post), data: { "turbo-method": :delete } if delete %></span>
   </div>
   
   <%= link_to 'View post ->', post_path(@post), class: 'block md:col-span-4 sm:col-span-2 mt-3', data: { turbo: false } %>

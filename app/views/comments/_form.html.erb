@@ -12,7 +12,7 @@
     </div>
   <% end %>
 
-  <%= form.rich_text_area :body, id: "#{dom_id_for_records(*model)}_body", required: true, class: 'h-[32rem]' %>
+  <%= form.rich_text_area :body, id: "#{dom_id_for_records(*model)}_body", required: true, class: 'h-[10rem]' %>
   <%= form.submit class: "text-sm font-medium text-white cursor-pointer bg-blue-700 hover:bg-blue-800 rounded-lg px-5 text-center py-2.5 mr-2 mb-2 focus:outline-none mt-5" %>
-  <%= link_to "Cancel", comment, class: "btn btn-link", data: { action: "click->form#edit" } if form.object.persisted? %>
+  <%= link_to "Cancel", comment, class: "btn btn-link", data: { action: "click->form##{local_assigns[:data][:form_target]}" } if form.object.persisted? || local_assigns[:commentable].class == Comment %>
 <% end %>

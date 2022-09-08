@@ -1,0 +1,6 @@
+<nav class="flow-root mb-10">
+  <div class="flex md:order-2 float-right">
+    <%= render(ButtonComponent.new(title: "Sign out", url: destroy_user_session_path, data: { 'turbo-method': :delete })) %>
+    <%= render(ButtonComponent.new(title: "Groups", url: groups_path)) %>
+  </div>
+</nav>

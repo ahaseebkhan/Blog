@@ -7,6 +7,10 @@ class CommentPolicy < ApplicationPolicy
   end
 
   def update?
-    false
+    comment.user == user || comment.group.creator == user
+  end
+
+  def destroy?
+    comment.user == user || comment.group.creator == user
   end
 end

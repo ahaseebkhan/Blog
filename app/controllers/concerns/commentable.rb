@@ -6,6 +6,7 @@ module Commentable
   
   def create
     @comment = @commentable.comments.new(comment_params)
+    @comment.group = @commentable.group
     @comment.user = current_user
 
     respond_to do |format|

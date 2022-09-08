@@ -8,10 +8,11 @@
   </div>
 
   <div class="field">
-    <%= form.rich_text_area :body, class: "block border border-grey-light w-full p-3 rounded mb-4 h-[32rem]", placeholder: 'Write your post...'  %>
+    <%= form.rich_text_area :body, class: "block border border-grey-light w-full p-3 rounded mb-4 #{'h-[32rem]' unless form.object.persisted?}", placeholder: 'Write your post...'  %>
   </div>
   
   <%= form.submit 'Post', class: "text-lg font-medium text-white cursor-pointer bg-blue-700 hover:bg-blue-800 rounded-lg px-5 text-center py-2.5 mr-2 mb-2 focus:outline-none" %>
+  <%= link_to "Cancel", post, class: "btn btn-link", data: { action: "click->form##{local_assigns[:data][:form_target]}" } if form.object.persisted? %>
 
   <% if post.errors.any? %>
     <div id="error_explanation mt-10">

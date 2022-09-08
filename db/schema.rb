@@ -55,11 +55,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_015140) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.bigint "user_id"
+    t.bigint "group_id"
     t.string "commentable_type"
     t.bigint "commentable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+    t.index ["group_id"], name: "index_comments_on_group_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -69,6 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_015140) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_group_users_on_group_id"
+    t.index ["user_id", "group_id"], name: "index_group_users_on_user_id_and_group_id", unique: true
     t.index ["user_id"], name: "index_group_users_on_user_id"
   end
 
@@ -106,6 +109,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_05_015140) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "groups"
   add_foreign_key "comments", "users"
   add_foreign_key "group_users", "groups"
   add_foreign_key "group_users", "users"

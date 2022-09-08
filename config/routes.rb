@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     resources :posts, controller: 'groups/posts'
   end
 
-  resources :posts, only: [:show, :update, :create] do
+  resources :posts, only: [:show, :update, :create, :destroy] do
     resources :comments, module: :posts
   end
 

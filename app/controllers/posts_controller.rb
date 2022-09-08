@@ -3,6 +3,7 @@ class PostsController < ApplicationController
   include RecordHelper
 
   before_action :set_post
+  before_action :set_comments, only: :show
 
   def show; end
 
@@ -26,14 +27,17 @@ class PostsController < ApplicationController
 
   def destroy
     # Add support for toast/flash later on to show error messages
-    @comment.destroy
-    redirect_to @comment.commentable
+    @post.destroy
+    redirect_to group_posts_path(@post.group)
   end
 
   private
 
   def set_post
     @post = Post.find(params[:id])
+  end
+
+  def set_comments
     @comments = @post.comments.order(created_at: :desc)
   end
 
