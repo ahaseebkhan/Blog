@@ -21,7 +21,7 @@ class Groups::PostsController < ApplicationController
   end
 
   def set_posts
-    @posts = @group.posts.left_outer_joins(:comments).select("posts.*, MIN(comments.updated_at) as last_activity").group('posts.id').order(created_at: :desc)
+    @posts = @group.posts.left_outer_joins(:comments).select("posts.*, MAX(comments.updated_at) as last_activity").group('posts.id').order(created_at: :desc)
   end
 
   def set_members
