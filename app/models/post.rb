@@ -8,6 +8,6 @@ class Post < ApplicationRecord
   validates :title, :body, presence: true
 
   scope :with_last_activity, -> { left_outer_joins(:comments).
-                                  select("posts.*, MAX(comments.updated_at) as last_activity").
+                                  select("posts.*, MAX(comments.created_at) as last_activity").
                                   group('posts.id').order(created_at: :desc) }
 end

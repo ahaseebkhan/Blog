@@ -29,9 +29,3 @@ This project currently works with:
 ## Further Improvements
 
 * Make the view components a little more reusable. Create common cards that can be used all our posts, groups and comments.
-
-* Add a `comment_id` foreign key inside the comments table apart from the `commentable` association.
-  This will help in adding dependent destroy just for comments. We'll be able to delete all nested comments of a comment once its deleted. `commentable` will then always be a `Post` in our case and later on we would be able to implement it for other resources too such as groups etc.
-
-* After the above point, we will also be easily able to track latest activity based on nested comments instead of just the root
-  level comments.
