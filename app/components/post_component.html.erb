@@ -4,7 +4,9 @@
   
   <div class="grid md:grid-cols-8 sm:grid-cols-1 mt-10 text-sm text-slate-500">
     <span class="col-span-3">
-      Last Comment <%= time_ago_in_words(@post.last_activity) rescue time_ago_in_words(@post.created_at) %> ago,
+      <% if @post.last_activity %>
+        Last Comment <%= time_ago_in_words(@post.last_activity) %> ago,
+      <% end %>
       Created by <%= @post.creator_id == user_id ? 'You' : @post&.creator.display_name %>
     </span>
     <span><%= link_to "Edit", "#", data: { action: "click->form#edit" } if edit %></span>

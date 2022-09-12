@@ -10,7 +10,7 @@ class Groups::PostsController < ApplicationController
     if post.update(post_params)
       redirect_to group_posts_path(@group)
     else
-      render :index
+      redirect_to group_posts_path(@group), alert: post.errors.full_messages.first
     end
   end
 
@@ -21,7 +21,7 @@ class Groups::PostsController < ApplicationController
   end
 
   def set_posts
-    @posts = @group.posts.left_outer_joins(:comments).select("posts.*, MAX(comments.updated_at) as last_activity").group('posts.id').order(created_at: :desc)
+    @posts = @group.posts.with_last_activity
   end
 
   def set_members

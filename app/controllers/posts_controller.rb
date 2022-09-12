@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   end
 
   def set_comments
-    @comments = @post.comments.order(created_at: :desc)
+    @comments = @post.comments.where(comment_id: nil).order(created_at: :desc)
   end
 
   def post_params
