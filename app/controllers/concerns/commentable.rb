@@ -6,7 +6,7 @@ module Commentable
   
   def create
     @comment = @commentable.comments.new(comment_params)
-    @comment.group = @commentable.group
+    @comment.comment = @parent
     @comment.user = current_user
 
     respond_to do |format|
@@ -15,7 +15,7 @@ module Commentable
         format.html { redirect_to @commentable }
       else
         format.turbo_stream {
-          render turbo_stream: turbo_stream.replace(dom_id_for_records(@commentable, Comment.new), partial: "comments/form", locals: { comment: @comment, commentable: @commentable })
+          render turbo_stream: turbo_stream.replace(dom_id_for_records(@parent || @commentable, @comment), partial: "comments/form", locals: { comment: @comment, commentable: (@parent || @commentable), data: { form_target: "new" } })
         }
         format.html { redirect_to @commentable }
       end

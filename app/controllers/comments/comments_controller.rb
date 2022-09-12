@@ -6,6 +6,7 @@ class Comments::CommentsController < ApplicationController
   private
 
   def set_commentable
-    @commentable = Comment.find(params[:comment_id])
+    @parent = Comment.find(params[:comment_id])
+    @commentable = @parent.commentable
   end
 end

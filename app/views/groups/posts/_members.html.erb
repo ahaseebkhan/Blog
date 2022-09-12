@@ -1,0 +1,9 @@
+<div class="col-start-9 col-span-10">
+  <h2 class="text-2xl font-extrabold dark:text-white mb-5">Members</h2>
+
+  <ul class="list-disc">
+    <% members.each do |member| %>
+      <li><%= member.display_name %></li>
+    <% end %>
+  </ul>
+</div>

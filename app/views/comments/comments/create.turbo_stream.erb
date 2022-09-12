@@ -1,1 +1,5 @@
-<%= turbo_stream.replace(dom_id_for_records(@commentable, prefix: 'container'), partial: "comments/comment", locals: { comment: @commentable, commentable: @commentable.commentable }) %>
+<% if @parent %>
+  <%= turbo_stream.replace(dom_id_for_records(@parent, prefix: 'container'), partial: "comments/comment", locals: { comment: @parent, commentable: @parent }) %>
+<% else %>
+  <%= turbo_stream.replace(dom_id_for_records(@commentable, prefix: 'container'), partial: "comments/comment", locals: { comment: @commentable, commentable: @commentable.commentable }) %>
+<% end %>
