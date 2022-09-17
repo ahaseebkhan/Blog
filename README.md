@@ -1,4 +1,4 @@
-# Simplero Test Project
+# A Blog application
 
 ## Description
 
